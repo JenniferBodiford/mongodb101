@@ -1,7 +1,7 @@
 use mymdb 	
 #to create new database with name 'mymdb' and switch to it
 
-show databases;
+show databases
 show dbs
 #to see existing databases
 #NOTE: 'mymdb' will not show b/c no collections inside
@@ -9,8 +9,8 @@ show dbs
 db
 #to show current database you're in
 
-db.movie.insert({"name":"Sarah"});
-#to insert document "name":"Sarah" into collection "movie"
+db.movie.insert({"name":"Pulp Fiction"})
+#to insert document "name":"Pulp Fiction" into collection "movie"
 #NOTE: creates collection if nonexistent
 
 show collections
@@ -19,5 +19,9 @@ show collections
 db.movie.find()
 #shows all documents in movie collection
 
-db.movie.find("name":"Chad")
+db.movie.insert({"name":"Star Wars"})
+
+db.movie.find()
+
+db.movie.find("name":"Pulp Fiction")
 
