@@ -1,23 +1,47 @@
-use mymdb 	
-#to create new database with name 'mymdb' and switch to it
-
-show databases;
-show dbs
 #to see existing databases
-#NOTE: 'mymdb' will not show b/c no collections inside
+show databases;
 
-db
+#to create new database with name 'mymdb' and switch to it
+use mymdb;
+
+#Show databases again... NOTE: 'mymdb' will not show b/c no collections inside
+show dbs;
+
 #to show current database you're in
+db
 
-db.movie.insert({"name":"Sarah"});
-#to insert document "name":"Sarah" into collection "movie"
-#NOTE: creates collection if nonexistent
+# show that we have no collections
+show collections;
 
-show collections
-#to see collections
+# create the collection
+db.createCollection("movie");
 
+# show that the collection now exists
+show collections;
+
+#insert a movie named "50 First Dates" into collection "movie"
+db.movie.insert({"name":"50 First Dates"});
+
+#shows document and the _id field on collection "movie"
 db.movie.find()
-#shows all documents in movie collection
 
-db.movie.find("name":"Chad")
+#insert a movie named "Happy Gilmore" into collection "movie"
+db.movie.insert({"name":"Happy Gilmore"});
 
+#shows both documents and the _id fields on collection "movie"
+db.movie.find()
+
+# run a query for all movies named "Happy Gilmore"
+db.movie.find({"name":"Happy Gilmore"});
+
+# return only the name
+db.movie.find({"_id":ObjectId("53fcdafa677366753a962bdf")}, {"name":1});
+
+# but wait! _id is returned by default! Exclude it manually
+db.movie.find({"_id":ObjectId("53fcdafa677366753a962bdf")}, {"name":1, "_id":0});
+
+#delete the movie collections
+db.movie.drop()
+
+#drop the database
+db.dropDatabase()
